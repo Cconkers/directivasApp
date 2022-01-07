@@ -13,22 +13,27 @@
     <div class="col-auto">
       <span
         mensaje="No puede estar vacío"
-        *ngIf="tieneError('nombre')"
+        [valido]="!tieneError('nombre')"
         ErrorMsj
         [mensaje]="texto1"
         [color]="color"
-        class="form-text"
       ></span>
     </div>
   </div>
 
   <div class="row mt-2">
-
     <div class="col">
-      <button  (click)="cambiarNombre()" class="btn btn-primary">Cambiar Nombre</button>
-      <button (click)="cambiarColor()" style="margin-left: 15px;" class=" btn btn-primary">Cambiar Color</button>
+      <button (click)="cambiarNombre()" class="btn btn-primary">
+        Cambiar Nombre
+      </button>
+      <button
+        (click)="cambiarColor()"
+        style="margin-left: 15px"
+        class="btn btn-primary"
+      >
+        Cambiar Color
+      </button>
     </div>
-
   </div>
 </form>
 
@@ -36,3 +41,11 @@
 
 <pre>Valid: {{ miFormulario.valid }}</pre>
 <pre>Valid: {{ miFormulario.value | json }}</pre>
+
+<div class="row mt-5"
+*customIf="miFormulario.valid"
+>
+  <div class="col">
+    <div class="alert alert-primary">Todo OK!</div>
+  </div>
+</div>
